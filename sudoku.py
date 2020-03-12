@@ -103,7 +103,7 @@ while(n>0):
                 l[k]=sud[i][j]
                 k=k+1
         for i in range(81):
-            print(l[i],end=" ")
+            print(l[i],end=" ") #printing solved sudoku
         print()
             
     
