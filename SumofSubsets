@@ -1,0 +1,33 @@
+"""A python program which takes a lit of numbers a s input and checks if the set can be divided into two sets which have same sum 
+for example given set is [1,5,11,5] and this can be divided into two sets [1,5,5] and [11] and both of them have same sum , so the 
+answer would be YES"""
+
+def SumofSub(i,rs,ps,arr,n):
+    if(rs==ps):
+        return 1
+    if(i>=n):
+        return 0
+    if(rs>ps):
+        return 0
+    if(rs+arr[i]<=ps):
+        if(SumofSub(i+1,rs+arr[i],ps,arr,n)==1):
+            return 1
+    if(SumofSub(i+1,rs,ps,arr,n)==1):
+        return 1
+    return 0
+t=int(input())
+while(t>0):
+    t=t-1
+    n=int(input())
+    arr=input().split()
+    for i in range(n):
+        arr[i]=int(arr[i])
+    s=sum(arr)
+    if(s%2!=0):
+        print("NO")
+        continue
+    if(SumofSub(0,0,s//2,arr,n)==1):
+        print("YES")
+    else:
+        print("NO")
+    
