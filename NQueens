@@ -1,0 +1,52 @@
+"""A python program which takes size of the board(n) as input and print all possible ways to keep n queens in each row such that there 
+is no attacking between the queens. A queen can attack another one in straight or diagonal way.
+for example: for n =4 the output is [2 4 1 3 ] [3 1 4 2 ]"""
+
+def isSafe(x,y,n,board):
+    for i in range(n):
+        if(board[x][i]==1):
+            return 0
+    for i in range(n):
+        if(board[i][y]==1):
+            return 0
+    for i in range(n):
+        for j in range(n):
+            if((i+j==x+y or i-j==x-y)and board[i][j]==1):
+                return 0
+    return 1
+def queen(x,n,board,ans):
+    if(x==n):
+        l=[]
+        for i in range(n):
+            l.append(1+board[i].index(1))
+        ans.append(l)
+        return
+    for i in range(n):
+        if(isSafe(x,i,n,board)==1):
+            board[x][i]=1
+            queen(x+1,n,board,ans)
+            board[x][i]=0
+    
+t=int(input())
+while(t>0):
+    t=t-1
+    n=int(input())
+    board=[]
+    for i in range(n):
+        l=[0 for i in range(n)]
+        board.append(l)
+    ans=[]
+    queen(0,n,board,ans)
+    if(len(ans)==0):
+        print(-1)
+        continue
+    for i in range(len(ans)):
+        print("[",end="")
+        for j in range(n-1):
+            print(ans[i][j],end=" ")
+        print(ans[i][n-1],end=" ")
+        print("]",end=" ")
+    print()
+    
+    
+    
