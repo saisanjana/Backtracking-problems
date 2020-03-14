@@ -1,0 +1,27 @@
+""" This ia a python program which gives a path follwed by a knight on a chessboard to cover all the sqaures on thr board."""
+def knight(x,y,mov,n,board):
+    if(mov==n*n+1):
+        return 1
+    if(x<n and y<n and x>=0 and y>=0 and board[x][y]==-1):
+        board[x][y]=mov
+        if(knight(x+2,y+1,mov+1,n,board)==1 or knight(x+1,y+2,mov+1,n,board)==1 or knight(x-1,y+2,mov+1,n,board)==1 or knight(x-2,y+1,mov+1,n,board)==1 or knight(x-2,y-1,mov+1,n,board)==1 or knight(x-1,y-2,mov+1,n,board)==1 or knight(x+1,y-2,mov+1,n,board)==1 or knight(x+2,y-1,mov+1,n,board)==1):
+            return 1
+        else:
+            board[x][y]=-1
+            return 0
+    else:
+        return 0
+
+n=int(input())
+board=[]
+for i in range(n):
+    l=[ -1 for j in range(n)]
+    board.append(l)
+if(knight(0,0,1,n,board)==1):  #knight starts from (0,0) position
+    for i in range(n):
+        for j in range(n):
+            print(board[i][j],end=" ")   #printing the board if a solution exists
+        print("")
+else:
+    print("No Solution!!")         #prints when there is no solution
+
